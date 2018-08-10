@@ -1,0 +1,11 @@
+{
+  "name": "ff-calculator",
+  "version": "1.0.0",
+  "description": "ACS(Independent) Boarding School Food Fine Calculator",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Calvin Tantio",
+  "license": "MIT"
+}
