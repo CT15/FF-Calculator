@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FF-Calculator</title>
+	<link rel="stylesheet" href="./mainWindow.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+</head>
+<body>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'deposit')">Deposit</button>
+		<button class="tablinks" onclick="openTab(event, 'debt')">Debt</button>
+		<button class="tablinks" onclick="openTab(event, 'settings')">Settings</button>
+	</div>
+
+	<div id="welcome" class="tabcontent">
+			<h3>Welcome to FF-Calculator</h3>
+			<p>Anglo-Chinese School (Independent) boarders' greatest nightmare.</p>
+	</div>
+
+	<div id="deposit" class="tabcontent">
+		<h3>Deposit</h3>
+		<p>This tab is to keep track of all the remaining deposit of the boarders.</p>
+	</div>
+
+	<div id="debt" class="tabcontent">
+		<h3>Debt</h3>
+		<p>This tab keeps track of the amount of money the boarders have to pay in cash.</p> 
+	</div>
+
+	<div id="settings" class="tabcontent">
+		<h3>Settings</h3>
+		<p>This tab is to set the price of breakfast, lunch and dinner.</p>
+	</div>
+
+	<script>
+		// Display the welcome tab content when none of the tab is selected
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 1; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+		}
+
+		function openTab(evt, tabId) {
+				// Declare all variables
+				var i, tabcontent, tablinks;
+
+				// Get all elements with class="tabcontent" and hide them
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+				}
+
+				// Get all elements with class="tablinks" and remove the class "active"
+				tablinks = document.getElementsByClassName("tablinks");
+				for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace(" active", "");
+				}
+
+				// Show the current tab, and add an "active" class to the link that opened the tab
+				document.getElementById(tabId).style.display = "block";
+				evt.currentTarget.className += " active";
+		}
+	</script> 
+
+</body>
+</html>
