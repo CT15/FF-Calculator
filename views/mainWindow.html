@@ -20,6 +20,8 @@
 	<div id="deposit" class="tabcontent">
 		<h3>Deposit</h3>
 		<p>This tab is to keep track of all the remaining deposit of the boarders.</p>
+		<button class="btn" onclick="createAddDepositWindow()">+</button>
+		<ul id="depositlist"></ul>
 	</div>
 
 	<div id="debt" class="tabcontent">
@@ -59,7 +61,9 @@
 				document.getElementById(tabId).style.display = "block";
 				evt.currentTarget.className += " active";
 		}
-	</script> 
+		
+	</script>
+	<script type="text/javascript" src="../deposit.js"></script>
 
 </body>
 </html>

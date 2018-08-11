@@ -1,3 +1,6 @@
+const electron = require('electron');
+const { app } = electron;
+
 const mainMenuTemplate = [
     {
         label: 'File',
