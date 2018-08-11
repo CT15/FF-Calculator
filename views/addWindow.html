@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Add New Student</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 </head>
+
 <body>
   <div class="container">
     <form>
@@ -20,7 +22,9 @@
   </div>
   <script>
     const electron = require('electron');
-    const { ipcRenderer } = electron;
+    const {
+      ipcRenderer
+    } = electron;
 
     const form = document.querySelector('form');
     form.addEventListener('submit', submitForm);
@@ -33,4 +37,5 @@
     }
   </script>
 </body>
+
 </html>

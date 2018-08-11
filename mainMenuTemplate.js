@@ -1,30 +1,25 @@
 const electron = require('electron');
 const { app } = electron;
 
-const mainMenuTemplate = [
-    {
-        label: 'File',
-        submenu: [
-            {
-                label: 'Quit',
-                accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-                click() {
-                    app.quit();
-                }
-            }
-        ]
-    }
-];
+const mainMenuTemplate = [{
+    label: 'File',
+    submenu: [{
+        label: 'Quit',
+        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+        click() {
+            app.quit();
+        }
+    }]
+}];
 
-if(process.platform == 'darwin') {
+if (process.platform == 'darwin') {
     mainMenuTemplate.unshift({});
 }
 
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     mainMenuTemplate.push({
         label: 'Developer Tools',
-        submenu: [
-            {
+        submenu: [{
                 label: 'Toggle DevTools',
                 accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
                 click(item, focusedWindow) {
