@@ -6,7 +6,8 @@ const mainMenuTemplate = require('./mainMenuTemplate');
 const { app, BrowserWindow, Menu, ipcMain } = electron
 
 let mainWindow;
-let addWindow;
+let addWindow; // used in views/scripts/depositTab.js
+let fineWindow; // used in views/scripts/depositTab.js
 
 // Listen for the app to be ready
 app.on('ready', () => {

@@ -20,22 +20,9 @@
       <button class="btn waves-effect waves-light" type="submit">+</button>
     </form>
   </div>
-  <script>
-    const electron = require('electron');
-    const {
-      ipcRenderer
-    } = electron;
 
-    const form = document.querySelector('form');
-    form.addEventListener('submit', submitForm);
+  <script type="text/javascript" src="scripts/addWindow.js"></script>
 
-    function submitForm(e) {
-      e.preventDefault();
-      const name = document.querySelector('#name').value;
-      const deposit = document.querySelector('#deposit').value;
-      ipcRenderer.send('deposit:add', name, deposit);
-    }
-  </script>
 </body>
 
 </html>

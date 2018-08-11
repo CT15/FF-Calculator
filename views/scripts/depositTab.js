@@ -12,17 +12,16 @@ ipcRenderer.on('deposit:add', (event, studentName, depositAmount) => {
 
     const li = document.createElement("li");
     li.className = "collection-item";
-    
+
     const nameText = document.createTextNode(studentName);
     const depositText = document.createTextNode(depositAmount);
-    
+
     const editButton = document.createElement("button");
-    const editText = document.createTextNode("Edit");
-    editButton.appendChild(editText);
+    editButton.innerHTML = "Edit";
 
     const fineButton = document.createElement("button");
-    const fineText = document.createTextNode("Fine");
-    fineButton.appendChild(fineText);
+    fineButton.innerHTML = "Fine";
+    fineButton.onclick = function() { createFineWindow() };
 
     [editButton, fineButton].forEach((button) => {
         button.className = "btn";
@@ -40,8 +39,8 @@ ipcRenderer.on('deposit:add', (event, studentName, depositAmount) => {
 function createAddDepositWindow() {
     // Create new window
     addWindow = new BrowserWindow({
-        width: 300,
-        height: 200,
+        width: 400,
+        height: 300,
         title: 'Add New Student'
     });
     // Load html into window
@@ -53,5 +52,23 @@ function createAddDepositWindow() {
     // Garbage collection handle
     addWindow.on('close', () => {
         addWindow = null;
+    });
+}
+
+function createFineWindow() {
+    fineWindow = new BrowserWindow({
+        width: 400,
+        height: 300,
+        title: 'Fine Student'
+    });
+    // Load html into window
+    fineWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'fineWindow.html'),
+        protocol: 'file',
+        slashes: true
+    }));
+    // Garbage collection handle
+    fineWindow.on('close', () => {
+        fineWindow = null;
     });
 }
