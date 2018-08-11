@@ -32,6 +32,6 @@ app.on('ready', () => {
     Menu.setApplicationMenu(mainMenu);
 });
 
-ipcMain.on('deposit:add', (event, studentName, depositAmount) => {
-    mainWindow.webContents.send('deposit:add', studentName, depositAmount);
+ipcMain.on('deposit:add', (event) => {
+    mainWindow.webContents.send('deposit:add');
 });

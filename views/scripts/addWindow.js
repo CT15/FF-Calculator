@@ -29,15 +29,13 @@ function submitForm(e) {
             dialog.showMessageBox({
                 type: "error",
                 title: "Duplicate student name",
-                message: "Student with name " + name + " is already present."
+                message: "Student with name " + name + " already exists."
             });
             return;
         }
+        saveStudent(name, deposit);
+        ipcRenderer.send('deposit:add');
     });
-
-    saveStudent(name, deposit);
-
-    ipcRenderer.send('deposit:add', name, deposit);
 }
 
 function isPresent(name, callback) {
