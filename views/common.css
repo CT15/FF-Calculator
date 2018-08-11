@@ -1,8 +1,3 @@
 .block {
   width: 100%;
 }
-
-.scrollable ul {
-  height: 100%;
-  overflow: auto;
-}
