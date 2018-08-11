@@ -13,23 +13,40 @@ ipcRenderer.on('deposit:add', (event, studentName, depositAmount) => {
     const li = document.createElement("li");
     li.className = "collection-item";
 
-    const nameText = document.createTextNode(studentName);
-    const depositText = document.createTextNode(depositAmount);
+    let row = document.createElement("div");
+    row.className = "row valign-wrapper";
 
+    let col1 = document.createElement("div");
+    col1.className = "col s5";
+    col1.appendChild(document.createTextNode(studentName));
+
+    let col2 = document.createElement("div");
+    col2.className = "col s3";
+    col2.appendChild(document.createTextNode("$" + depositAmount));
+
+    let col3 = document.createElement("div");
+    col3.className = "col s2";
     const editButton = document.createElement("button");
     editButton.innerHTML = "Edit";
+    col3.appendChild(editButton);
 
+    let col4 = document.createElement("div");
+    col4.className = "col s2";
     const fineButton = document.createElement("button");
     fineButton.innerHTML = "Fine";
+    fineButton.className = "red lighten-1"
     fineButton.onclick = function() { createFineWindow() };
+    col4.appendChild(fineButton);
 
     [editButton, fineButton].forEach((button) => {
-        button.className = "btn";
+        button.classList.add("btn");
     });
 
-    [nameText, depositText, editButton, fineButton].forEach((element) => {
-        li.appendChild(element);
+    [col1, col2, col3, col4].forEach((element) => {
+        row.appendChild(element);
     });
+
+    li.appendChild(row);
 
     depositList.appendChild(li);
 
@@ -39,15 +56,15 @@ ipcRenderer.on('deposit:add', (event, studentName, depositAmount) => {
 function createAddDepositWindow() {
     // Create new window
     addWindow = new BrowserWindow({
-        width: 400,
-        height: 300,
+        width: 350,
+        height: 215,
+        resizable: false,
         title: 'Add New Student'
     });
     // Load html into window
     addWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'addWindow.html'),
-        protocol: 'file',
-        slashes: true
+        protocol: 'file'
     }));
     // Garbage collection handle
     addWindow.on('close', () => {
@@ -57,15 +74,15 @@ function createAddDepositWindow() {
 
 function createFineWindow() {
     fineWindow = new BrowserWindow({
-        width: 400,
-        height: 300,
+        width: 350,
+        height: 360,
+        resizable: false,
         title: 'Fine Student'
     });
     // Load html into window
     fineWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'fineWindow.html'),
-        protocol: 'file',
-        slashes: true
+        protocol: 'file'
     }));
     // Garbage collection handle
     fineWindow.on('close', () => {

@@ -5,6 +5,7 @@
   <title>FF-Calculator</title>
   <link rel="stylesheet" href="./mainWindow.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -20,10 +21,13 @@
   </div>
 
   <div id="deposit" class="tabcontent">
-    <h3>Deposit</h3>
+    <h3 class="left">Deposit</h3>
+    <div class="alternate-option">
+      <button class="btn-floating right btn-large waves-effect waves-light" onclick="createAddDepositWindow()"><i class="large material-icons">add</i></button>
+    </div>
+    <div class="clearfix"></div>
     <p>This tab is to keep track of all the remaining deposit of the boarders.</p>
-    <button class="btn" onclick="createAddDepositWindow()">+</button>
-    <ul id="depositlist"></ul>
+    <ul id="depositlist" style="height: 78%; overflow: auto"></ul>
   </div>
 
   <div id="debt" class="tabcontent">
@@ -35,7 +39,7 @@
     <h3>Settings</h3>
     <p>This tab is to set the price of breakfast, lunch and dinner.</p>
     <h4>
-      <u>Price</u>
+      Price (in SGD)
     </h4>
     <form>
       <div>

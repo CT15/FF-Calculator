@@ -1,3 +1,8 @@
+tabcontent = document.getElementsByClassName("tabcontent");
+for (i = 1; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+}
+
 function openTab(evt, tabId) {
     // Declare all variables
     let i, tabcontent, tablinks;

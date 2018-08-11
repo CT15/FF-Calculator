@@ -12,10 +12,11 @@ let fineWindow; // used in views/scripts/depositTab.js
 // Listen for the app to be ready
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
-        maxHeight: 600,
-        minHeight: 400,
+        height: 500,
+        maxHeight: 722,
+        minHeight: 470,
         maxWidth: 800,
-        minWidth: 400
+        minWidth: 600
     });
 
     mainWindow.loadURL(url.format({
