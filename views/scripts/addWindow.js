@@ -12,7 +12,7 @@ function submitForm(e) {
         return;
     }
 
-    name = toTitleCase(name);
+    name = toTitleCase(name).trim();
     deposit = Number(deposit.replace(/^0+/, '')).toFixed(2);
 
     isPresent(name, (present) => {
