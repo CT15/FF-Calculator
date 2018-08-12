@@ -11,28 +11,23 @@ function submitForm(e) {
     e.preventDefault();
 
     let name = document.querySelector('#name').value;
-    const deposit = document.querySelector('#deposit').value;
+    let deposit = document.querySelector('#deposit').value;
 
     if (!name || !deposit) {
-        dialog.showErrorBox({
-            title: "Missing field(s)",
-            message: "All fields must be filled."
-        });
+        dialog.showErrorBox("Missing field(s)", "All fields must be filled.");
         return;
     }
 
     name = toTitleCase(name);
+    deposit = Number(deposit.replace(/^0+/, '')).toFixed(2);
 
     isPresent(name, (present) => {
         if (present) {
-            dialog.showErrorBox({
-                title: "Duplicate student name",
-                message: "Student with name " + name + " already exists."
-            });
+            dialog.showErrorBox("Duplicate student name", "Student with name " + name + " already exists.");
             return;
         }
         saveStudent(name, deposit);
-        ipcRenderer.send('deposit:add');
+        ipcRenderer.send('deposit:update', 'add');
     });
 }
 

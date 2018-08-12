@@ -8,7 +8,7 @@ const { app, BrowserWindow, Menu, ipcMain } = electron
 let mainWindow;
 let addWindow; // used in views/scripts/depositTab.js
 let fineWindow; // used in views/scripts/depositTab.js
-let removeStudentWindow; // used in views/scripts/depositTab.js
+let editDepositWindow; // used in views/scripts/depositTab.js
 
 // Listen for the app to be ready
 app.on('ready', () => {
@@ -33,6 +33,20 @@ app.on('ready', () => {
     Menu.setApplicationMenu(mainMenu);
 });
 
-ipcMain.on('deposit:add', (event) => {
-    mainWindow.webContents.send('deposit:add');
+ipcMain.on('deposit:update', (event, windowId) => {
+    mainWindow.webContents.send('deposit:update', windowId);
+});
+
+// These two variables are to be send to editDepositWindow once it is loaded.
+let studentName;
+let depositAmount;
+ipcMain.on('deposit:edit', (event, name, deposit) => {
+    studentName = name;
+    depositAmount = deposit;
+});
+
+ipcMain.on('editDepositWindow-ready', (event) => {
+    BrowserWindow.getAllWindows().forEach((window) => {
+        window.webContents.send('deposit:edit', studentName, depositAmount);
+    });
 });
