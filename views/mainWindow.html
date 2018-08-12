@@ -44,15 +44,15 @@
     <form>
       <div>
         <label>Breakfast</label>
-        <input class="priceinput" type="number" step="0.1" min="0" value="0" disabled>
+        <input class="priceinput" type="number" step="0.01" min="0" id="breakfast" disabled>
       </div>
       <div>
         <label>Lunch</label>
-        <input class="priceinput" type="number" step="0.1" min="0" value="0" disabled>
+        <input class="priceinput" type="number" step="0.01" min="0" id="lunch" disabled>
       </div>
       <div>
         <label>Dinner</label>
-        <input class="priceinput" type="number" step="0.1" min="0" value="0" disabled>
+        <input class="priceinput" type="number" step="0.1" min="0" id="dinner" disabled>
       </div>
       <button type="button" id="editpricebtn" class="btn" onClick="editPriceInput()">Edit</button>
       <button type="button" id="editpricedonebtn" class="btn" onClick="doneEdittingPrice()" disabled>Done</button>
