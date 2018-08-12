@@ -1,5 +1,3 @@
-const studentsDb = new DataSource({ filename: 'storage/students.db', autoload: true });
-
 const form = document.querySelector('form');
 form.addEventListener('submit', submitForm);
 
@@ -23,7 +21,7 @@ function submitForm(e) {
             return;
         }
         saveStudent(name, deposit);
-        ipcRenderer.send('deposit:update', 'add');
+        ipcRenderer.send('data:update', 'add');
     });
 }
 

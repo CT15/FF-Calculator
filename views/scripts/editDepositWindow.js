@@ -1,5 +1,3 @@
-const studentsDb = new DataSource({ filename: 'storage/students.db', autoload: true });
-
 let oldName;
 
 ipcRenderer.on('deposit:edit', (event, name, deposit) => {
@@ -42,7 +40,7 @@ function updateStudent(name, deposit) {
             if (err) {
                 dialog.showErrorBox("Update failed", "An error occured. Unable to update student's data.");
             } else {
-                ipcRenderer.send('deposit:update', 'edit');
+                ipcRenderer.send('data:update', 'edit');
             }
         });
 }

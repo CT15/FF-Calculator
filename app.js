@@ -9,6 +9,7 @@ let mainWindow;
 let addWindow; // used in views/scripts/depositTab.js
 let fineWindow; // used in views/scripts/depositTab.js
 let editDepositWindow; // used in views/scripts/depositTab.js
+let payWindow; // used in views/scripts/debtTab.js
 
 // Listen for the app to be ready
 app.on('ready', () => {
@@ -33,13 +34,14 @@ app.on('ready', () => {
     Menu.setApplicationMenu(mainMenu);
 });
 
-ipcMain.on('deposit:update', (event, windowId) => {
-    mainWindow.webContents.send('deposit:update', windowId);
+ipcMain.on('data:update', (event, windowId) => {
+    mainWindow.webContents.send('data:update', windowId);
 });
 
-// These two variables are to be send to secondary window once it is loaded.
+// These variables are to be send to secondary window once it is loaded.
 let studentName;
 let depositAmount;
+
 ipcMain.on('deposit:edit', (event, name, deposit) => {
     studentName = name;
     depositAmount = deposit;
@@ -58,5 +60,15 @@ ipcMain.on('deposit:fine', (event, name) => {
 ipcMain.on('fineWindow-ready', (event) => {
     BrowserWindow.getAllWindows().forEach((window) => {
         window.webContents.send('deposit:fine', studentName);
+    });
+});
+
+ipcMain.on('debt:pay', (event, name) => {
+    studentName = name;
+});
+
+ipcMain.on('payWindow-ready', (event) => {
+    BrowserWindow.getAllWindows().forEach((window) => {
+        window.webContents.send('debt:pay', studentName);
     });
 });

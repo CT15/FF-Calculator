@@ -1,5 +1,3 @@
-const studentsDb = new DataSource({ filename: "storage/students.db", autoload: true });
-
 const depositList = document.getElementById('depositlist');
 
 loadStudentsList();
@@ -35,8 +33,9 @@ function reloadStudentsList() {
     });
 }
 
-ipcRenderer.on('deposit:update', (event, windowId) => {
+ipcRenderer.on('data:update', (event, windowId) => {
     reloadStudentsList();
+    reloadDebtsList(); // in debtTab.java
 
     switch (windowId) {
         case 'add':
@@ -48,29 +47,11 @@ ipcRenderer.on('deposit:update', (event, windowId) => {
         case 'fine':
             fineWindow.close();
             break;
+        case 'pay':
+            payWindow.close(); // created in debtTab.java
+            break;
     }
 });
-
-function showRemoveConfirmation(event) {
-    const name = event.target.innerHTML;
-
-    dialog.showMessageBox(
-        remote.getCurrentWindow(), {
-            type: "question",
-            buttons: ["Yes", "Cancel"],
-            title: "Remove student",
-            message: "Do you really want to remove " + name + "?"
-        },
-        (response) => {
-            // Yes
-            if (response === 0) {
-                studentsDb.remove({ name: name });
-                reloadStudentsList();
-            }
-
-        }
-    );
-}
 
 function createStudentRow(studentName, depositAmount) {
     const li = document.createElement("li");
@@ -114,6 +95,27 @@ function createStudentRow(studentName, depositAmount) {
     li.appendChild(row);
 
     depositList.appendChild(li);
+}
+
+function showRemoveConfirmation(event) {
+    const name = event.target.innerHTML;
+
+    dialog.showMessageBox(
+        remote.getCurrentWindow(), {
+            type: "question",
+            buttons: ["Yes", "Cancel"],
+            title: "Remove student",
+            message: "Do you really want to remove " + name + "?"
+        },
+        (response) => {
+            // Yes
+            if (response === 0) {
+                studentsDb.remove({ name: name });
+                reloadStudentsList();
+            }
+
+        }
+    );
 }
 
 function createAddDepositWindow() {

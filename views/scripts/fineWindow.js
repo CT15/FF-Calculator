@@ -1,6 +1,3 @@
-const pricesDb = new DataSource({ filename: "storage/prices.db", autoload: true });
-const studentsDb = new DataSource({ filename: "storage/students.db", autoload: true });
-
 let bPrice, lPrice, dPrice, studentName;
 
 ipcRenderer.on('deposit:fine', (event, name) => {
@@ -57,20 +54,23 @@ function submitForm(e) {
     studentsDb.findOne({ name: studentName }, (err, doc) => {
         if (err) {
             dialog.showErrorMessage("Student not found", "Unable to find " + studentName + " in the database.");
+            return;
         }
 
         const deposit = doc.deposit;
 
         if (deposit < 0) {
-            studentsDb.update({ name: studentName }, { $set: { deposit: 0 }, $inc: { debt: deposit } });
+            const newDebt = doc.debt - deposit;
+
+            studentsDb.update({ name: studentName }, { $set: { deposit: 0, debt: newDebt } });
             dialog.showMessageBox(
                 remote.getCurrentWindow(), {
                     type: "info",
                     title: "Debt",
-                    message: studentName + " needs to pay " + -doc.debt + " in cash."
+                    message: studentName + " needs to pay $" + newDebt + " in cash."
                 });
         }
 
-        ipcRenderer.send('deposit:update', 'fine');
+        ipcRenderer.send('data:update', 'fine');
     });
 }

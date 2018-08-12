@@ -1,9 +1,7 @@
-const priceDb = new DataSource({ filename: "storage/prices.db", autoload: true });
-
 loadPrices();
 
 function loadPrices() {
-    priceDb.find({}, (err, docs) => {
+    pricesDb.find({}, (err, docs) => {
         if (err) {
             dialog.showErrorBox("Load error", "Meal prices are not loaded successfully.");
             return;
@@ -39,7 +37,7 @@ function doneEdittingPrice() {
         priceInputs[i].disabled = true;
     }
 
-    priceDb.remove({}, { multi: true });
+    pricesDb.remove({}, { multi: true });
 
     const breakfastPrice = Number(document.getElementById("breakfast").value.replace(/^0+/, '')).toFixed(2);
     const lunchPrice = Number(document.getElementById("lunch").value.replace(/^0+/, '')).toFixed(2);
@@ -60,7 +58,7 @@ function doneEdittingPrice() {
         price: dinnerPrice
     }
 
-    priceDb.insert([breakfast, lunch, dinner]);
+    pricesDb.insert([breakfast, lunch, dinner]);
 
     document.getElementById("breakfast").value = breakfastPrice;
     document.getElementById("lunch").value = lunchPrice;
