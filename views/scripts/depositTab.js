@@ -105,13 +105,14 @@ function showRemoveConfirmation(event) {
             type: "question",
             buttons: ["Yes", "Cancel"],
             title: "Remove student",
-            message: "Do you really want to remove " + name + "?"
+            message: "Do you really want to remove " + name + "? All the data of debt and deposit will be lost."
         },
         (response) => {
             // Yes
             if (response === 0) {
                 studentsDb.remove({ name: name });
                 reloadStudentsList();
+                reloadDebtsList();
             }
 
         }
