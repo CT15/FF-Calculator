@@ -1,6 +1,6 @@
 # Food Fine Calculator
 
-![screen_shot](https://github.com/CT15/FF-Calculator "Screen Shot")
+![screen_shot](https://github.com/CT15/FF-Calculator/blob/master/screen_shots/screen_shot.png "Screen Shot")
 
 A calculator to help myself deal with the food fine collection matters in Anglo-Chinese School (Independent) Boarding School.
 
@@ -9,7 +9,9 @@ The calculator takes care of all the boarders' deposits and debts. The user just
 ## Technology
 
 Framework: electron
+
 Database: NeDB
+
 UI (CSS Framework): Materialize CSS
 
 ## Setup Instruction
