@@ -1,6 +1,9 @@
 const electron = require('electron');
 const { app } = electron;
 
+// SET ENV
+process.env.NODE_ENV = "production";
+
 const mainMenuTemplate = [{
     label: 'File',
     submenu: [{
