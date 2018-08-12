@@ -42,7 +42,8 @@ function toTitleCase(str) {
 function saveStudent(name, deposit) {
     const newStudent = {
         name: name,
-        deposit: deposit
+        deposit: Number(deposit),
+        debt: 0
     }
     studentsDb.insert(newStudent);
 }

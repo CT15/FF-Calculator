@@ -9,23 +9,26 @@
 
 <body>
   <div class="container">
-    <h4>Student name</h4>
+    <h4 id="name"></h4>
     <form>
       <div>
-        <label>Breakfast(SGD price)</label>
-        <input type="number" min="0" value="0" step="1">
+        <label id="breakfast">Breakfast</label>
+        <input type="number" id="bCount" min="0" value="0" step="1">
       </div>
       <div>
-        <label>Breakfast(SGD price)</label>
-        <input type="number" min="0" value="0" step="1">
+        <label id="lunch">Lunch</label>
+        <input type="number" id="lCount" min="0" value="0" step="1">
       </div>
       <div>
-        <label>Breakfast(SGD price)</label>
-        <input type="number" min="0" value="0" step="1">
+        <label id="dinner">Dinner</label>
+        <input type="number" id="dCount" min="0" value="0" step="1">
       </div>
       <button type="submit" class="btn waves-effect waves-light block red lighten-1">Fine</button>
     </form>
   </div>
+
+  <script type="text/javascript" src="scripts/commonModule.js"></script>
+  <script type="text/javascript" src="scripts/fineWindow.js"></script>
 
 </body>
 

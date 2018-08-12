@@ -37,7 +37,7 @@ ipcMain.on('deposit:update', (event, windowId) => {
     mainWindow.webContents.send('deposit:update', windowId);
 });
 
-// These two variables are to be send to editDepositWindow once it is loaded.
+// These two variables are to be send to secondary window once it is loaded.
 let studentName;
 let depositAmount;
 ipcMain.on('deposit:edit', (event, name, deposit) => {
@@ -48,5 +48,15 @@ ipcMain.on('deposit:edit', (event, name, deposit) => {
 ipcMain.on('editDepositWindow-ready', (event) => {
     BrowserWindow.getAllWindows().forEach((window) => {
         window.webContents.send('deposit:edit', studentName, depositAmount);
+    });
+});
+
+ipcMain.on('deposit:fine', (event, name) => {
+    studentName = name;
+});
+
+ipcMain.on('fineWindow-ready', (event) => {
+    BrowserWindow.getAllWindows().forEach((window) => {
+        window.webContents.send('deposit:fine', studentName);
     });
 });

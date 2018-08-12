@@ -45,6 +45,9 @@ ipcRenderer.on('deposit:update', (event, windowId) => {
         case 'edit':
             editDepositWindow.close();
             break;
+        case 'fine':
+            fineWindow.close();
+            break;
     }
 });
 
@@ -97,7 +100,7 @@ function createStudentRow(studentName, depositAmount) {
     const fineButton = document.createElement("button");
     fineButton.innerHTML = "Fine";
     fineButton.className = "red lighten-1"
-    fineButton.onclick = function() { createFineWindow(); };
+    fineButton.onclick = function() { createFineWindow(studentName); };
     col4.appendChild(fineButton);
 
     [editButton, fineButton].forEach((button) => {
@@ -132,7 +135,9 @@ function createAddDepositWindow() {
     });
 }
 
-function createFineWindow() {
+function createFineWindow(name) {
+    if (moreThanOneSecondaryWindows()) { return; }
+
     fineWindow = new BrowserWindow({
         width: 350,
         height: 360,
@@ -144,6 +149,9 @@ function createFineWindow() {
         pathname: path.join(__dirname, 'fineWindow.html'),
         protocol: 'file'
     }));
+
+    ipcRenderer.send('deposit:fine', name);
+
     // Garbage collection handle
     fineWindow.on('close', () => {
         fineWindow = null;
@@ -151,6 +159,8 @@ function createFineWindow() {
 }
 
 function createEditDepositWindow(name, deposit) {
+    if (moreThanOneSecondaryWindows()) { return; }
+
     editDepositWindow = new BrowserWindow({
         width: 350,
         height: 215,
@@ -169,4 +179,13 @@ function createEditDepositWindow(name, deposit) {
     editDepositWindow.on('close', () => {
         editDepositWindow = null;
     });
+}
+
+function moreThanOneSecondaryWindows() {
+    if (BrowserWindow.getAllWindows().length > 1) {
+        dialog.showErrorBox("Multiple windows error", "Please close all secondary windows before continue.")
+        return true;
+    }
+
+    return false;
 }

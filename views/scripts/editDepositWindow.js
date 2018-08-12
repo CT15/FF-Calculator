@@ -37,7 +37,7 @@ function toTitleCase(str) {
 }
 
 function updateStudent(name, deposit) {
-    studentsDb.update({ name: oldName }, { name: name, deposit: deposit }, {},
+    studentsDb.update({ name: oldName }, { $set: { name: name, deposit: Number(deposit) } }, {},
         (err) => {
             if (err) {
                 dialog.showErrorBox("Update failed", "An error occured. Unable to update student's data.");
