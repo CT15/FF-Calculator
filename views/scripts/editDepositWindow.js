@@ -25,7 +25,20 @@ function submitForm(e) {
     name = toTitleCase(name);
     deposit = Number(deposit.replace(/^0+/, '')).toFixed(2);
 
-    updateStudent(name, deposit);
+    isPresent(name, (present) => {
+        if (present) {
+            dialog.showErrorBox("Duplicate student name", "Student with name " + name + " already exists.");
+            return;
+        }
+        updateStudent(name, deposit);
+    });
+
+}
+
+function isPresent(name, callback) {
+    studentsDb.findOne({ name: name }, (err, doc) => {
+        if (doc) { callback(true); } else { callback(false); }
+    });
 }
 
 function toTitleCase(str) {
