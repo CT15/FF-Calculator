@@ -1,7 +1,3 @@
-const electron = require('electron');
-const { ipcRenderer } = electron;
-const { dialog } = electron.remote;
-const DataSource = require('nedb');
 const studentsDb = new DataSource({ filename: 'storage/students.db', autoload: true });
 
 let oldName;

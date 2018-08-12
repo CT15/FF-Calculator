@@ -1,5 +1,3 @@
-//const { dialog } = require('electron').remote;
-//const DataSource = require('nedb');
 const priceDb = new DataSource({ filename: "storage/prices.db", autoload: true });
 
 loadPrices();
@@ -12,7 +10,6 @@ function loadPrices() {
         }
 
         docs.forEach((meal) => {
-            console.log(meal);
             document.getElementById(meal.meal).defaultValue = meal.price;
         });
     });

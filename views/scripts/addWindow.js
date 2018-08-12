@@ -1,8 +1,4 @@
-const electron = require('electron');
-const { ipcRenderer } = electron;
-const { dialog } = electron.remote;
-const Datastore = require('nedb');
-const studentsDb = new Datastore({ filename: 'storage/students.db', autoload: true });
+const studentsDb = new DataSource({ filename: 'storage/students.db', autoload: true });
 
 const form = document.querySelector('form');
 form.addEventListener('submit', submitForm);
