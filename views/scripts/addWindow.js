@@ -14,8 +14,7 @@ function submitForm(e) {
     const deposit = document.querySelector('#deposit').value;
 
     if (!name || !deposit) {
-        dialog.showMessageBox({
-            type: "error",
+        dialog.showErrorBox({
             title: "Missing field(s)",
             message: "All fields must be filled."
         });
@@ -26,8 +25,7 @@ function submitForm(e) {
 
     isPresent(name, (present) => {
         if (present) {
-            dialog.showMessageBox({
-                type: "error",
+            dialog.showErrorBox({
                 title: "Duplicate student name",
                 message: "Student with name " + name + " already exists."
             });

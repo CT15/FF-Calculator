@@ -8,6 +8,7 @@ const { app, BrowserWindow, Menu, ipcMain } = electron
 let mainWindow;
 let addWindow; // used in views/scripts/depositTab.js
 let fineWindow; // used in views/scripts/depositTab.js
+let removeStudentWindow; // used in views/scripts/depositTab.js
 
 // Listen for the app to be ready
 app.on('ready', () => {

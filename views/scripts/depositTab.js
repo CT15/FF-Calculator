@@ -1,6 +1,7 @@
 const electron = require('electron');
 const { ipcRenderer } = electron;
-const { BrowserWindow, dialog } = electron.remote;
+const remote = electron.remote;
+const { BrowserWindow, dialog } = remote;
 
 const url = require('url');
 const path = require('path');
@@ -10,13 +11,12 @@ const studentsDb = new DataSource({ filename: "storage/students.db", autoload: t
 
 const depositList = document.getElementById('depositlist');
 
-loadStudentList();
+loadStudentsList();
 
-function loadStudentList() {
+function loadStudentsList() {
     studentsDb.find({}, (err, docs) => {
         if (err) {
-            dialog.showMessageBox({
-                type: "error",
+            dialog.showErrorBox({
                 title: "Unable to show data.",
                 message: "Unable to find students data."
             });
@@ -35,24 +35,46 @@ function loadStudentList() {
     });
 }
 
-ipcRenderer.on('deposit:add', (event) => {
+function reloadStudentsList() {
     depositList.innerHTML = "";
-
     studentsDb.loadDatabase((err) => {
         if (err) {
-            dialog.showMessageBox({
-                type: "error",
+            dialog.showErrorBox({
                 title: "Unable to load new data.",
                 message: "Unable to display new students data."
             });
             return;
         }
 
-        loadStudentList();
+        loadStudentsList();
     });
+}
 
+ipcRenderer.on('deposit:add', (event) => {
+    reloadStudentsList();
     addWindow.close();
 });
+
+function showRemoveConfirmation(event) {
+    const name = event.target.innerHTML;
+
+    dialog.showMessageBox(
+        remote.getCurrentWindow(), {
+            type: "question",
+            buttons: ["Yes", "Cancel"],
+            title: "Remove student",
+            message: "Do you really want to remove " + name + "?"
+        },
+        (response) => {
+            // Yes
+            if (response === 0) {
+                studentsDb.remove({ name: name });
+                reloadStudentsList();
+            }
+
+        }
+    );
+}
 
 function createStudentRow(studentName, depositAmount) {
     const li = document.createElement("li");
@@ -64,6 +86,7 @@ function createStudentRow(studentName, depositAmount) {
     let col1 = document.createElement("div");
     col1.className = "col s5";
     col1.appendChild(document.createTextNode(studentName));
+    col1.addEventListener("dblclick", showRemoveConfirmation);
 
     let col2 = document.createElement("div");
     col2.className = "col s3";
