@@ -1,6 +1,8 @@
 # Food Fine Calculator
 
-![screen_shot](https://github.com/CT15/FF-Calculator/blob/master/screen_shots/screen_shot.png "Screen Shot")
+<p align="center">
+  <img width="600" src="https://github.com/CT15/FF-Calculator/blob/master/screen_shots/screen_shot.png">
+</p>
 
 A calculator to help myself deal with the food fine collection matters in Anglo-Chinese School (Independent) Boarding School.
 
