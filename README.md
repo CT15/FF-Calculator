@@ -39,44 +39,44 @@ UI (CSS Framework): Materialize CSS
 ### Set meal prices
 
 1. Go to `Settings` tab
-2. Click `EDIT` button
+2. Click <kbd>EDIT</kbd> button
 3. Edit the price of breakfast / lunch / dinner
-4. Click `DONE` button
+4. Click <kbd>DONE</kbd> button
 
 ### Add new student to deposit list
 
 1. Go to `Deposit` tab
-2. Click `+` button
+2. Click <kbd>+</kbd> button
 3. Observe that an `Add Student` window appears
 4. Fill in all the fields (name and deposit amount)
-5. Click `ADD` button
+5. Click <kbd>ADD</kbd> button
 
 ### Edit student in the deposit list
 
 1. Go to `Deposit` tab
-2. Click on `EDIT` button beside the student name you want to edit
+2. Click on <kbd>EDIT</kbd> button beside the student name you want to edit
 3. Observe that an `Edit Student` window appears
 4. Change necessary field(s)
-5. Click `DONE` button
+5. Click <kbd>DONE</kbd> button
 
 ### Fine student
 
 1. Go to `Deposit` tab
-2. Click on `FINE` button beside the student name you want to fine
+2. Click on <kbd>FINE</kbd> button beside the student name you want to fine
 3. Observe that a `Fine Student` window appears
 4. Key in the number of breakfast / lunch / dinner that the student skips
-5. Click `FINE` button
+5. Click <kbd>FINE</kbd> button
 
 P.S. If the amount of fine is greater than the student's deposit, you will be able to see the student's debt at the `Debt` tab.
 
 ### Pay off debt
 
 1. Go to `Debt` tab
-2. Click `PAID` if the student pays the exact amount of money (done), OR
-3. Click `PAY` if the student pays more or less than this debt
+2. Click <kbd>PAID</kbd> if the student pays the exact amount of money (done), OR
+3. Click <kbd>PAY</kbd> if the student pays more or less than this debt
 4. Observe that a `Pay Debt` window appears
 5. Key in the amount paid by the student.
-5. Click `PAY` button
+5. Click <kbd>PAY</kbd> button
 
 P.S. If the amount paid is greater than the student's debt, the remaining amount will be added to the student's deposit.
 
